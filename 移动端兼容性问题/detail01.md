@@ -51,3 +51,60 @@ css增加cursor:pointer就搞定了。
 ```
 * 先是背景框内嵌套内层弹框，背景使用fixed或者absolute，但是left，top，right，bottom都为0，让其占满整屏；然后内层弹框相对定位，放置在背景框中一个合适的位置，例如上下左右居中。注意，内层框左右宽度固定，上下高度则用百分比布局设置一个最大高度，例如65%，然后让y轴的overflow为auto。
 ```
+
+### android设备查看背景图有些设备会模糊的问题
+
+  用同等比例的图片，在PC上很清晰，但是在有些手机上却很模糊。这是因为手机分辨率太小，如果按照分辨率来显示网页，字会非常小，所以苹果将iPhone4的960*640分辨率在网页中只显示480*320，这样devicePixelRatio=2。而对于这一参数，android比较乱，有1.5的也有2的3的。
+
+> 解决方案
+
+```
+用2x的背景图来代替img标签，再background-size:contain。
+  background: url('../images/1.jpg') no-repeat center center; -webkit-background-size:50px 50px; background-size: 50px 50px;display:inline-block; width:100%; height:50px;  
+```
+
+### css动画页面闪白，动画卡顿
+
+> 解决方案
+
+```
+1. 尽可能地使用合成属性transform和opacity来设计CSS3动画，不使用position的left和top来定位
+2. 开启硬件加速
+
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+```
+
+### fixed定位缺陷
+
+* ios下fixed元素容易定位出错，软键盘弹出时，影响fixed元素定位
+* android下fixed表现要比iOS更好，软键盘弹出时，不会影响fixed元素定位
+* ios4下不支持position:fixed
+
+> 解决方案
+
+```
+可以使用iScroll插件解决这个问题，或者使用absolute定位方式
+```
+
+### input的placeholder会出现文本位置偏上
+
+  PC端设置line-height等于height能够对齐，而移动端仍然是偏上
+
+> 解决方式
+
+```
+line-height: normal;
+```
+
+### 往返缓存
+
+  点击浏览器的返回，有时不会执行js，特别是在mobilesafari中
+
+> 解决方案
+
+```
+window.onunload = function(){};
+```  

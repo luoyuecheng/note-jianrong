@@ -1,1 +1,25 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="format-detection" content="email=no">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" autocapitalize="off" autocorrect="off" />
+  </body>
+  <script type="text/javascript">
+seajs.config({
+  // 变量配置
+  vars : {
+    'locale' : 'zh-cn'
+  }
+});
+define(function(require, exports, module){
+  var lang = require('./i18n/{locale}.js');
+  // => 加载的是 ./i18n/zh-cn.js
+});
+  </script>
+</html>
