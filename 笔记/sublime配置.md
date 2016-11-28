@@ -1,3 +1,4 @@
+```
 {
 	"auto_complete": true,
 	"auto_match_enabled": true,
@@ -17,3 +18,4 @@
 	"update_check": false,
 	"word_wrap": true
 }
+```
