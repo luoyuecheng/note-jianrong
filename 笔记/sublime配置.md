@@ -19,3 +19,26 @@
 	"word_wrap": true
 }
 ```
+```
+//[    { "keys": ["f12"], "command": "open_in_browser"},]
+[
+{
+  "keys": ["f12"],
+  "command": "side_bar_open_in_browser",
+  "args": {
+              "paths": [],
+              "type": "testing",
+              "browser": ""
+          }
+  }
+]
+```
+```
+{
+  "default_browser": "chrome", //one of this list: firefox, aurora, chrome, canary, chromium, opera, safari
+  "open_all_browsers": ["firefox", "chrome","ie", "edge"],
+  "portable_browser": "E:/1000phone/Mozilla Firefox/firefox.exe",
+	"portable_browser": "E:/1000phone/Google/Chrome/Application/chrome.exe",
+}
+
+```

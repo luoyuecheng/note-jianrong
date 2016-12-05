@@ -12,15 +12,13 @@
     https://github.com/samuelrafo/piatto.git
   </body>
   <script type="text/javascript">
-seajs.config({
-  // 变量配置
-  vars : {
-    'locale' : 'zh-cn'
-  }
-});
-define(function(require, exports, module){
-  var lang = require('./i18n/{locale}.js');
-  // => 加载的是 ./i18n/zh-cn.js
-});
+var color = "红色";
+function fun(){
+  alert(this.color);
+}
+var obj = {"color": "蓝色"};
+fun(); // 返回红色
+obj.showColor = fun; // 创建方法并把fun赋值给它
+obj.showColor(); // 返回蓝色
   </script>
 </html>
