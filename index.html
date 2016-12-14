@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta name="format-detection" content="email=no">
-    <meta name="format-detection" content="telephone=no">
-    <title></title>
-  </head>
-  <body>
-    <input type="text" autocapitalize="off" autocorrect="off" />
-    https://github.com/samuelrafo/piatto.git
-  </body>
-  <script type="text/javascript">
-var color = "红色";
-function fun(){
-  alert(this.color);
-}
-var obj = {"color": "蓝色"};
-fun(); // 返回红色
-obj.showColor = fun; // 创建方法并把fun赋值给它
-obj.showColor(); // 返回蓝色
-  </script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+  document.onkeydown = function(eva){
+    var eva = eva || window.event;
+    var code = eva.keyCode// || eva.which;
+    console.log(code);
+  }
+
+</script>
+</body>
 </html>
