@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>添加数据</title>
+		<link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="http://apps.bdimg.com/libs/animate.css/3.1.0/animate.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/public/demo.css" />
+		<link href="css/public/style.css" rel="stylesheet">
+		<link href="css/public/main.css" rel="stylesheet">
+		<style>
+			.table-box .not tr:not(.order_list) {
+				display: none;
+			}
+			
+			.child {
+				font-size: 12px;
+			}
+			
+			.displaynone {
+				display: none;
+			}
+			
+			#layui-layer1 .row {
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<nav class="navbar-default navbar-static-side dis_none" role="navigation">
+				<div class="sidebar-collapse">
+					<ul class="nav metismenu" id="side-menu">
+						<li class="nav-header">
+							<div class="dropdown profile-element">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+									<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">蓝讯科技</strong>
+                             </span> </span>
+								</a>
+							</div>
+							<div class="logo-element">
+								蓝讯
+							</div>
+						</li>
+						<li class="active">
+							<a href="javascript:void(0)"><i class="fa fa-file"></i> <span class="nav-label">订单管理</span><span class="fa fa-angle-right"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li class="active">
+									<a href="order.html">订单列表</a>
+								</li>
+								<li>
+									<a href="order_modify.html">订单处理</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><i class="fa fa-th-large"></i> <span class="nav-label">商品管理</span><span class="fa fa-angle-right"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li class="active">
+									<a href="index.html">商品列表</a>
+								</li>
+								<li>
+									<a href="product_add.html">添加商品</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><i class="fa fa-tag"></i> <span class="nav-label">分类管理</span> <span class="fa fa-angle-right"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li class="active">
+									<a href="category.html">分类列表</a>
+								</li>
+								<li>
+									<a href="tag.html">标签列表</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="nav-label">会员管理</span><span class="fa fa-angle-right"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li class="active">
+									<a href="users.html">会员管理</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><i class="fa fa-cogs"></i> <span class="nav-label">网站管理</span><span class="fa fa-angle-right"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li class="active">
+									<a href="web_index.html">首页管理</a>
+								</li>
+								<li>
+									<a href="show.html">买家秀管理</a>
+								</li>
+								<li>
+									<a href="door.html">任意门管理</a>
+								</li>
+								<li>
+									<a href="designer.html">设计师管理</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><i class="fa fa-wrench"></i> <span class="nav-label">系统管理</span><span class="fa fa-angle-right"></span></a>
+							<ul class="nav nav-second-level collapse">
+								<li class="active">
+									<a href="person.html">用户管理</a>
+								</li>
+								<li>
+									<a href="vilid.html">权限管理</a>
+								</li>
+								<li>
+									<a href="role.html">角色管理</a>
+								</li>
+								<li>
+									<a href="menu.html">菜单管理</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div id="page-wrapper" class="gray-bg">
+				<div class="row ">
+					<nav class="navbar navbar-static-top white-bg" role="navigation">
+						<div class="navbar-header">
+							<a class="navbar-minimalize minimalize-styl-2 shrink-icon" href="#"></a>
+						</div>
+						<div class="crumbs">
+							<span>蓝讯</span>
+						</div>
+						<ul class="nav navbar-top-links navbar-right">
+							<li class="balance">
+								<a href="#">
+									<span class="balance">余额</span>
+									<span class="pull-right label label-green">780</span>
+								</a>
+							</li>
+							<li class="admin">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+									<img alt="image" class="img-circle" src="images/profile_small.jpg">
+									<span class="user">admin</span>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu animated fadeInRight m-t-xs">
+									<li>
+										<a href="#">个人中心</a>
+									</li>
+									<li>
+										<a href="login.html">退出</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="wrapper wrapper-content animated fadeInRight" id="wrapper1">
+					<div class="row">
+						<form class="m-t" role="form" id="formTest">
+
+							<div class="col-lg-12">
+								<div class="ibox-content">
+									<div class="ibox-title">
+										<h5 class="title">添加数据</h5>
+									</div>
+									<div class="blank-20"></div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="table-box">
+												<div class="upload-box">
+													<div class="row form-group">
+														<label class="control-label col-lg-4 txt-R"><span class="text-red">*</span>
+										姓名:</label>
+														<div class="col-lg-5">
+															<input type="text" id="name" class="form-control" placeholder="姓名">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="table-box">
+
+												<div class="upload-box">
+													<div class="row form-group">
+														<label class="control-label col-lg-4 txt-R"><span class="text-red">*</span>
+										手机号码:</label>
+														<div class="col-lg-5">
+															<input type="text" id="tel" class="form-control" placeholder="手机号">
+														</div>
+
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="table-box">
+
+												<div class="upload-box">
+													<div class="row form-group">
+														<label class="control-label col-lg-4 txt-R"><span class="text-red">*</span>
+										初始密码:</label>
+														<div class="col-lg-5">
+															<input type="text" id="pswd" class="form-control" placeholder="初始密码">
+														</div>
+														<!--<input type="button" ng-click="onFileSelect('file3', 'http://192.168.1.66/youchu/rank/UploadBranch')" value="上传" class=" btn btn-primary">-->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="table-box">
+
+												<div class="upload-box">
+													<div class="row form-group">
+														<label class="control-label col-lg-4 txt-R"><span class="text-red">*</span>
+										所属部门:</label>
+														<div class="col-lg-5">
+															<input type="text" id="department" class="form-control" placeholder="所属部门">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="table-box">
+
+												<div class="upload-box">
+													<div class="row form-group">
+														<label class="control-label col-lg-4 txt-R"><span class="text-red">*</span>
+										所在职位:</label>
+														<div class="col-lg-5">
+															<input type="text" id="position2" class="form-control" placeholder="所在职位">
+														</div>
+
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="table-box">
+												<div class="upload-box">
+													<div class="row form-group">
+														<div class="col-lg-5">
+
+														</div>
+
+														<input type="button" value="提交" class=" btn btn-primary col-lg-2" id="submit">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="footer">
+					<div class="pull-right">
+						10GB of <strong>250GB</strong> Free.
+					</div>
+					<div>
+						<strong>Copyright</strong> 蓝讯科技
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script src="js/public/jquery.metisMenu.js"></script>
+		<script src="js/public/jquery.slimscroll.min.js"></script>
+		<script src="js/public/inspinia.js"></script>
+		<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+		<script src="js/public/public.js"></script>
+		<script src="http://apps.bdimg.com/libs/angular-file-upload/1.3.1/angular-file-upload.min.js"></script>
+		<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				$("#submit").click(function() {
+					var username = $("#name").val();
+					var phoneNum = $("#tel").val();
+					var initPsd = $("#pswd").val();
+					var department = $("#department").val();
+					var duty = $("#position2").val();
+
+					if(username == "") {
+						alert('请输入正确的名称.');
+						return;
+					}
+					if(phoneNum == "" || (phoneNum != "" && !/^[1][0-9]{10}$/.test(phoneNum))) {
+						alert('请输入正确的电话.');
+						return;
+					}
+					if(initPsd == "") {
+						alert('请输入初始密码.');
+						return;
+					}
+					if(department == "") {
+						alert('请输入部门信息.');
+						return;
+					}
+					if(duty == "") {
+						alert('请输入职位信息.');
+						return;
+					}
+					console.log(1);
+
+					$.ajax({
+						type: "get",
+						async: false,
+						url: "http://work.lancent.com.cn:10001/lancentAdmin/uploadEmployeeInfo",
+						dataType: "jsonp",
+						jsonp: "jsoncallback",
+						jsonpCallback: "success_jsonpCallback",
+//						data: $("#formTest").serializeArray(),
+						data: {
+							username: username,
+							phoneNum: phoneNum,
+							initPsd: initPsd,
+							department: department,
+							duty: duty
+						},
+
+						success: function(json) {
+
+							alert(json);
+						}
+
+					});
+
+
+
+
+
+//					$.ajax({
+//						cache: true,
+//						type: "get",
+//						url:"http://work.lancent.com.cn:10001/lancentAdmin/uploadEmployeeInfo",
+//						dataType: "jsonp",
+//						data:$('#yourformid').serialize(),// 你的formid
+//						async: false,
+//						error: function(request) {
+//							alert("Connection error");
+//						},
+//						success: function(data) {
+//							$("#commonLayout_appcreshi").parent().html(data);
+//						}
+//					});
+
+				});
+
+			});
+
+			//			?username=张军&phoneNum=183989879999&initPsd=zj&department=服务部&duty=web前端工程师
+		</script>
+	</body>
+
+</html>

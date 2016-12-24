@@ -1,0 +1,227 @@
+[
+  {
+    "type": "post",
+    "url": "/login",
+    "title": "1.1 登录接口",
+    "name": "administrator_login",
+    "group": "1",
+    "version": "1.0.0",
+    "description": "<p>用于验证用户登录的接口</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>用户名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "RequestExample:",
+        "content": "{\n \"username\":\"张军\",\n \"password\":\"zj\"\n}",
+        "type": "url"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n \"success\":true,\n \"message\":\"用户登录成功！\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "{\n \"success\":false,\n \"message\":\"用户名或密码错误，登录失败！\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "D:/ZLXM/zlxm/lancentAdmin/src/cn/com/lancent/admin/service/Login.java",
+    "groupTitle": "1",
+    "sampleRequest": [
+      {
+        "url": "http://work.lancent.com.cn:10001/lancentAdmin/login"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/getEmployeeInfo",
+    "title": "1.3 查看员工信息接口",
+    "name": "get_employee_information",
+    "group": "1",
+    "version": "1.0.0",
+    "description": "<p>用于对员工的信息进行查看</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "pageNum",
+            "description": "<p>页码</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "RequestExample:",
+        "content": "http://work.lancent.com.cn:10001/lancentAdmin/getEmployeeInfo?pageNum=1",
+        "type": "url"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n \"success\":true,\n \"message\":\"成功获得用户的信息！\",\n \"data\":\n {\n  \"employeeinfo\":\n  [\n   {\n    \"id\":\"1\",\n    \"username\":\"张军\",\n    \"phoneNum\":\"18238989898\",\n    \"department\":\"服务部\",\n    \"duty\":\"web前端工程师\",\n    \"headImageUrl\":\"/headImage/zj.jpg\"\n   },\n   {\n    \"id\":\"2\",\n    \"username\":\"阚丰蕊\",\n    \"phoneNum\":\"18237876675\",\n    \"department\":\"服务部\",\n    \"duty\":\"Java开发工程师\",\n    \"headImageUrl\":\"/headImage/kfr.jpg\"\n   }\n  ],\n  \"pageNum\":\"1\",//页码\n  \"pageSize\":\"6\",//页大小\n  \"totalPageNum\":\"5\"//总页数\n }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "{\n \"success\":false,\n \"message\":\"查看用户信息失败！\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "D:/ZLXM/zlxm/lancentAdmin/src/cn/com/lancent/admin/service/getEmployeeInfo.java",
+    "groupTitle": "1",
+    "sampleRequest": [
+      {
+        "url": "http://work.lancent.com.cn:10001/lancentAdmin/getEmployeeInfo"
+      }
+    ]
+  },
+  {
+    "type": "post",
+    "url": "/uploadEmployeeInfo",
+    "title": "1.2 员工信息录入接口",
+    "name": "upload_employee_information",
+    "group": "1",
+    "version": "1.0.0",
+    "description": "<p>用于对员工的信息进行录入</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>用户名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNum",
+            "description": "<p>手机号码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "initPsd",
+            "description": "<p>初始密码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "department",
+            "description": "<p>部门</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "duty",
+            "description": "<p>职位</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "RequestExample:",
+        "content": "{\n \"username\":\"张军\",\n \"phoneNum\":\"183989879999\",\n \"initPsd\":\"zj\",\n \"department\":\"服务部\",\n \"duty\":\"web前端工程师\"\n}",
+        "type": "url"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n \"success\":true,\n \"message\":\"员工信息上传成功！\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "{\n \"success\":false,\n \"message\":\"员工信息上传失败！\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "D:/ZLXM/zlxm/lancentAdmin/src/cn/com/lancent/admin/service/UploadEmployeeInfo.java",
+    "groupTitle": "1",
+    "sampleRequest": [
+      {
+        "url": "http://work.lancent.com.cn:10001/lancentAdmin/uploadEmployeeInfo"
+      }
+    ]
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p>"
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "D:/ZLXM/zlxm/lancentAdmin/adminapidoc/main.js",
+    "group": "D__ZLXM_zlxm_lancentAdmin_adminapidoc_main_js",
+    "groupTitle": "D__ZLXM_zlxm_lancentAdmin_adminapidoc_main_js",
+    "name": ""
+  }
+]

@@ -3,15 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <script type="text/javascript" src="../jquery.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
-  document.onkeydown = function(eva){
-    var eva = eva || window.event;
-    var code = eva.keyCode// || eva.which;
-    console.log(code);
-  }
-
+  $(function(){
+    console.log("测试");
+    $.ajax({
+      url: "/api",
+      dataType: "json",
+      data: {
+        "url": "http://work.lancent.com.cn:10001/lancentAdmin/login",
+        "username": "luoyuecheng",
+        "password": "luoluo"
+      },
+      success: function(res) {
+        console.log(res);
+        if(!res.success){
+          alert(res.message);
+        }
+      }
+    });
+    // 员工信息录入接口
+    $.ajax({
+      url: "/api",
+      dataType: "json",
+      data: {
+        "url": "http://work.lancent.com.cn:10001/lancentAdmin/uploadEmployeeInfo",
+        "username": "luoyuecheng",
+        "phoneNum": "17000000001",
+        "department": "研发部",
+        "duty": "高级工程师"
+      },
+      success: function(res) {
+        console.log(res);
+      }
+    });
+  })
 </script>
 </body>
 </html>

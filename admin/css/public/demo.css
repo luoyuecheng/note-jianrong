@@ -1,0 +1,38 @@
+/*按钮样式*/
+#button1{
+	width:100%;
+	.btn-change{
+		width:100%;
+		margin:0 auto;
+	}
+}
+
+.button2{
+	float:left;
+	margin-left:20px;
+	margin-bottom: 20px;
+}
+.button3{
+	float:right;
+	margin-right:20px;
+	margin-bottom: 20px;
+}
+/*图片显示样式*/
+.photoinf{
+	margin-left:20px;
+	float:left;
+	width:12%;
+	border:2px solid #000;
+	margin-bottom: 20px;
+}
+.photoSize{
+	
+	width:100%;height:100%;
+}
+.fontRel{
+	line-height: 50px;
+	font-size:16px;
+	text-align: center;
+}
+
+
