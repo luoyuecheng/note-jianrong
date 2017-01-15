@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> 网页全屏 </title>
+    <style media="screen">
+      html,body{ width: 100%; height: 100%; margin: 0; padding: 0;}
+      .box{ width: 100%; height: 100%; position: relative; background: #0f0;}
+      .full{ position: absolute; top: 10px; left: 50px;}
+      i.iconfont{ color: #fff; cursor: pointer; font-size: 16px; font-weight: bolder;}
+      .undis{ display: none;}
+    </style>
+    <script src="./jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="full" id="full">
+        <i class="iconfont" data-status="full">全屏</i>
+        <i class="iconfont undis" data-status="exitFull">还原</i>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    $(function() {
+      $('#full').on('click', 'i.iconfont', function() {
+        // $(this).removeClass('undis').siblings('i.iconfont').addClass('undis');
+        $(this).addClass('undis').siblings('i.iconfont').removeClass('undis');
+        if($(this).data('status') == 'full') {
+          requestFullScreen();
+        } else {
+          exitFullscreen();
+        }
+      })
+    })
+    //
+    function requestFullScreen() {
+      var elem = document.documentElement;
+      if(elem.requestFullScreen) {
+        elem.requestFullScreen();
+      } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullScreen) {
+        elem.webkitRequestFullScreen();
+      }
+    }
+    function exitFullscreen() {
+      if(document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      }
+    }
+  </script>
+</html>

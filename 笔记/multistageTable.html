@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div id="table"></div>
+</body>
+<script type="text/javascript">
+  // var data = [{"id":"1","pid":"0","name":"消费者诉讼","rowspan":"15"},{"id":"2","pid":"0","name":"备注信息","rowspan":"6"},{"id":"11","pid":"1","name":"产品质量问题","rowspan":"15"},{"id":"111","pid":"11","name":"标识标签问题","rowspan":"13"},{"id":"112","pid":"11","name":"非法添加问题","rowspan":"2"},{"id":"1111","pid":"111","name":"名称/规格/净含量/生产日期瑕疵","rowspan":"1"},{"id":"1112","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1113","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1114","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1115","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1116","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1117","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1118","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"1119","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"11110","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"11111","pid":"111","name":"营养标签瑕疵","rowspan":"1"},{"id":"11112","pid":"111","name":"营养标签瑕疵","rowspan":"2"},{"id":"111121","pid":"11112","name":"营养标签瑕疵11","rowspan":"1"},{"id":"111122","pid":"11112","name":"营养标签瑕疵11","rowspan":"1"},{"id":"1121","pid":"112","name":"食品中添加保健食品原料，填写保健食品原料名称","rowspan":"1"},{"id":"1122","pid":"112","name":"化妆品添加禁用原料，禁用原料名称","rowspan":"1"},{"id":"21","pid":"2","name":"备注：","rowspan":"3"},{"id":"22","pid":"2","name":"关键词：","rowspan":"1"},{"id":"23","pid":"2","name":"是否属实/提供证据：","rowspan":"1"},{"id":"24","pid":"2","name":"假冒材质子场景：沙发","rowspan":"1"},{"id":"211","pid":"21","name":"假冒材质子场景：沙发","rowspan":"1"},{"id":"212","pid":"21","name":"假冒材质子场景：沙发","rowspan":"2"},{"id":"2121","pid":"212","name":"假冒材质子场景：沙发","rowspan":"1"},{"id":"2122","pid":"212","name":"假冒材质子场景：沙发","rowspan":"1"}];
+  var data = [{"name":"消费者诉讼","children":[{"name":"产品质量问题","children":[{"name":"标识问题","children":[{"name":"名称/规格/净含量/生产日期瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵","children":[{"name":"营养标签瑕疵"},{"name":"营养标签瑕疵"}]}]},{"name":"非法添加问题","children":[{"name":"食品中添加保健食品原料，填写保健食品原料名称","children":[]},{"name":"化妆品添加禁用原料，禁用原料名称","children":[]}]}]}]},{"name":"备注信息","children":[{"name":"备注：","children":[{"name":"假冒材质子场景：沙发"},{"name":"假冒材质子场景：沙发","children":[{"name":"假冒材质子场景：沙发"},{"name":"假冒材质子场景：沙发"}]}]},{"name":"关键词：","children":[]},{"name":"是否属实/提供证据：","children":[]},{"name":"假冒材质子场景：沙发"}]}];
+  window.onload = function() {
+    new MultistageTable(document.getElementById('table'), data);
+  }
+
+  function MultistageTable() {
+    // this.outelement = arguments[0];
+    // this.data = arguments[1];
+    this.arguments = arguments;
+    this.oData = {};
+    this.tierList = [];
+    this.init();
+  }
+  MultistageTable.prototype = {
+    init: function(){
+      //
+      this.layout();
+      // 处理数据
+      // this.analysisList();
+      this.analysisTree(this.data, 0);
+      // 生成rowspan和列树tier，初始为第1列
+      this.rows(this.oData[0], 1);
+      // 处理第一列没有子列的元素
+      this.details();
+      // 计算列数最大值
+      var maxtier = this.solvetier();
+      // 生成colspan
+      this.cols(this.oData[0], maxtier);
+      var html = this.createDom(this.oData[0]);
+      this.outelement.innerHTML = '<table border="1" style="border-collapse:collapse;"><tr>' + html + '</table>';
+    },
+    layout: function() {
+      if(this.arguments instanceof Object) {
+        this.data = this.arguments.data;
+        this.outelement = this.arguments.outelement;
+      }
+    },
+    analysisList: function() {
+      for(var i=0, len=this.data.length; i<len; i++) {
+        if(this.oData[this.data[i].pid]) {
+          this.oData[this.data[i].pid].push(this.data[i]);
+        } else {
+          this.oData[this.data[i].pid] = [this.data[i]];
+        }
+      }
+    },
+    analysisTree: function(data, pid) {
+      if(!data || (data instanceof Array == true && !data.length)) {
+        return 0;
+      }
+      var id = 0;
+      for(var i = 0, len = data.length; i < len; i++) {
+        if(!data[i].pid) {
+          data[i].pid = pid;
+        }
+        if(!data[i].id) {
+          data[i].id = pid + '_' + id;
+        }
+        if(this.oData[pid]) {
+          this.oData[pid].push(data[i]);
+        } else {
+          this.oData[pid] = [data[i]];
+        }
+        this.analysisTree(data[i].children, data[i].id);
+        id++;
+      }
+    },
+    details: function() {
+      var multistageid = 0;
+      for(var i=0, len=this.oData[0].length; i<len; i++) {
+        if(!this.oData[this.oData[0][i].id]) {
+          this.oData[this.oData[0][i].id] = [{id: 'multistageid_0_' + multistageid, pid: this.oData[o][i].id, rowspan: 0, tier: 2, name: ''}];
+        }
+      }
+    },
+    rows: function(data, tier) {
+      if(!data) {
+        return 1;
+      }
+      var rowspan = 0;
+      for(var i=0, len=data.length; i<len; i++) {
+        this.tierList.push(tier);
+        data[i].tier = tier;
+        data[i].rowspan = this.rows(this.oData[data[i].id], tier + 1);
+        rowspan += data[i].rowspan;
+      }
+      return rowspan;
+    },
+    cols: function(data, maxtier) {
+      if(!data) {
+        return 0;
+      }
+      for(var i=0, len=data.length; i<len; i++) {
+        if(this.cols(this.oData[data[i].id], maxtier) == 0) {
+          data[i].colspan = maxtier - data[i].tier + 1;
+          continue;
+        }
+        data[i].colspan = 1;
+      }
+    },
+    solvetier: function() {
+      var maxtier = this.tierList[0];
+      for(var i = 0, len = this.tierList.length; i < len; i++) {
+        if(maxtier < this.tierList[i]) {
+          maxtier = this.tierList[i];
+        }
+      }
+      return maxtier;
+    },
+    createDom: function(data) {
+      if(!data) {
+        return '</tr>';
+      }
+      var isfirst = true;
+      html = '';
+      for(var i = 0, len = data.length; i < len; i++) {
+        if(isfirst) {
+          html += '<td rowspan="'+ data[i].rowspan +'" colspan="'+ data[i].colspan +'">'+ data[i].name + '</td>';
+          isfirst = false;
+        } else {
+          html += '<tr><td rowspan="'+ data[i].rowspan +'" colspan="'+ data[i].colspan +'">'+ data[i].name + '</td>';
+        }
+        html += this.createDom(this.oData[data[i].id]);
+      }
+      return html;
+    }
+  }
+</script>
+</html>

@@ -10,22 +10,21 @@
   $(function(){
     console.log("测试");
     $.ajax({
+      type: "post",
       url: "/api",
-      dataType: "json",
       data: {
         "url": "http://work.lancent.com.cn:10001/lancentAdmin/login",
-        "username": "luoyuecheng",
-        "password": "luoluo"
+        "username": "张军",
+        "password": "zj"
       },
+      dataType: "json",
       success: function(res) {
         console.log(res);
-        if(!res.success){
-          alert(res.message);
-        }
+        alert(res.message);
       }
     });
     // 员工信息录入接口
-    $.ajax({
+    /*$.ajax({
       url: "/api",
       dataType: "json",
       data: {
@@ -37,8 +36,11 @@
       },
       success: function(res) {
         console.log(res);
+      },
+      error: function(e) {
+        console.log(e);
       }
-    });
+    });*/
   })
 </script>
 </body>

@@ -9,19 +9,31 @@ var app = express();
 
 // req : request 浏览器发送给服务器的对象
 // res : response 服务器发送给浏览器的对象
-app.route('/api').get(function(req, res){
+// app.route('/api').get(function(req, res){
+// 	var query = req.query;
+// 	var url = query.url;
+// 	delete query.url;
+// 	request.post({
+// 		url : url,
+// 		formData : query
+// 		/**
+// 		 * error : 判断结果是否错误
+// 		 * response : 请求的头文件信息
+// 		 * data ： 返回的结果数据
+// 		 */
+// 	},function(error,response,data){
+// 		res.send(data);
+// 	});
+// });
+
+app.route('/api').post(function(req, res) {
+	console.log(route.stack, "....")
 	var query = req.query;
 	var url = query.url;
 	delete query.url;
-	request.post({
-		url : url,
-		formData : query
-		/**
-		 * error : 判断结果是否错误
-		 * response : 请求的头文件信息
-		 * data ： 返回的结果数据
-		 */
-	},function(error,response,data){
+	url = url + str(query);
+	request.get({url: url, formData: query}, function(error, response, data) {
+		console.log(data);
 		res.send(data);
 	});
 });
@@ -36,3 +48,12 @@ var server  = require('http').createServer(app);
 server.listen(9010, "0.0.0.0", function() {
 	console.log('http://127.0.0.1:9010');
 });
+
+function str(query) {
+	var str = "?";
+	for(var key in query) {
+		str += key + "=" + query[key] + "&";
+	}
+	console.log(str);
+	return str;
+}
